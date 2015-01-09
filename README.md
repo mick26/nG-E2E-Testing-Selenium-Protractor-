@@ -1,25 +1,65 @@
-## Angular E2E Testing with Protractor
+## Why?
+
+A step by step guide to aid learning about how to do end-to-end testing on AngularJS applications using Protractor. Most of the content is got while going through the Protractor examples on the [Protractor Web Site](http://angular.github.io/protractor).
+
+
+## Angular End-2-End Testing with Protractor
+
+
+End-to-end or System testing involves checking the flow of an application from start to finish ensuring that each element functions correctly.
+
+For web applications end-2-end testing involves: 
+
+- finding DOM elements 
+- interacting with DOM elements
+- checking application state
 
 
 ### What is Protractor
 
 [Protractor](http://angular.github.io/protractor) is an end-to-end testing framework for AngularJS applications. Protractor is essentially a wrapper around the [Selenium Web Driver aka Selenium 2](http://docs.seleniumhq.org/projects/webdriver/). Selenium 2 enables a browser to be opened automatically and a test run on it without user intervention.
 
-Protractor allows you to run tests on the browser and compare the actual test results to expected results. Protractor is a [NodeJS](http://nodejs.org/) program so Node needs to be installed. Protractor uses the [Jasmine test framework](http://jasmine.github.io/) for its testing interface. The _describe_ and _it_ syntax in the test files(i.e. _spec_ files) are from Jasmine.
+Protractor allows you to run tests on the browser and compare the actual test results to expected results. Protractor is a [NodeJS](http://nodejs.org/) program so Node needs to be installed. Protractor uses the [Jasmine test framework](http://jasmine.github.io/) for its testing interface. The _describe_ and _it_ syntax in the test files (i.e. _spec_ files) are from Jasmine.
+<br/><br/>
+
+
+#### Locating DOM elements using Protractor.
+
+The __element()__ function is used for finding HTML elements on a webpage. It returns an ElementFinder object. The ElementFinder object can be used to interact with the element or get information from it. __element()__ takes one parameter, a Locator, which describes how to find the element. The __by__ object creates Locators. 
+
+
+[Protractor Locators](http://angular.github.io/protractor/#/locators) are used with the element() function to specify specific Angular elements:
+
+A locator tells Protractor how to find a certain DOM element. Some _Locators_ are:
+
++ by.css('.myclass') //find an element using a css selector
++ by.id('myid')      //find an element with the given id
++ by.model('name')   //find an element that matched an ng-model name
++ by.binding('bindingname') //find an element bound to the given variable
+<br/><br/>
+
+
+#### Interacting with DOM elements using Protractor.
+
+__sendKeys(value)__ allows a _value_ to be sent to a HTML &lt;input&gt; field <br/>
+__click()__ allows a button to be pressed
+<br/><br/>
+
+
+#### Checking State with Protractor.
+
+__getText()__ allows the value of a DOM element to be read
+<br/><br/>
 
 
 
-### Getting Started
-
+### Getting Started with Protractor
 
 Install _Protractor_ and _Webdriver-manager_ globally:
 <pre>npm install -g protractor</pre>
 
 Test installation was ok:
 <pre>protractor --version</pre>
-
-
-The webdriver-manager is a helper tool to easily get an instance of a Selenium Server running. Use it to download the necessary binaries with
 
 Check for software updates for _Selenium standalone server_ and _Chromedriver_:
 <pre>webdriver-manager update</pre>
@@ -48,49 +88,18 @@ exports.config = {
 }
 </pre>
 
+<br/>
 
-
-## Time for some Tests ##
-
-
-### 1. Test - check web page title ###
-
-This test:
-
-- Opens Chrome browser 
-- Browses to http://162.248.160.45:1120
-- Checks that the title is _Real Time DART Train Info_
-
-<pre>
-describe('angularjs homepage', function() {
-  it('should have a title', function() {
-    browser.get('http://162.248.160.45:1120/');
-
-    expect(browser.getTitle()).toEqual('Real Time DART Train Info');
-  });
-});
-</pre>
-
-
-__Run the Protractor Test:__
+#### To Run a Protractor Test:
 
 <pre>protractor conf.js</pre>
 
+<br/>
 
 
-__If Test Failed__
+### Time for some Tests ###
 
-Finished in 4.178 seconds
-
-1 test, 1 assertion, 1 failure
-
-
-__If Test Passed__
-
-Finished in 4.477 seconds
-
-1 test, 1 assertion, 0 failures
-
+Check out the test folders
 
 
 
